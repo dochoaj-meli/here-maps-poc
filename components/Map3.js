@@ -5,6 +5,7 @@ const Map = ({ apikey = null }) => {
 
   useLayoutEffect(() => {
     if (!mapRef.current) return;
+    if (!apikey) return;
 
     const H = window.H;
     const platform = new H.service.Platform({
@@ -27,11 +28,7 @@ const Map = ({ apikey = null }) => {
     return () => {
       createdMap.dispose();
     };
-  }, [mapRef]);
-
-  if (!apikey) {
-    return null;
-  }
+  }, [mapRef, apikey]);
 
   return <div className="map" ref={mapRef} style={{ height: "500px" }} />;
 };
