@@ -1,10 +1,13 @@
 import Script from "next/script";
 import Head from "next/head";
 import dynamic from "next/dynamic";
+import { useState } from "react";
 
 const DynamicMap = dynamic(() => import("../components/Map3"), { ssr: false });
 
 export default function Home() {
+  const [apikey, setApiKey] = useState("");
+
   return (
     <div>
       <Head>
@@ -32,8 +35,9 @@ export default function Home() {
       />
       <main>
         <div>Hello</div>
+        <input onChange={(e) => setApiKey(e.target.value)} value={apikey} />
 
-        <DynamicMap />
+        <DynamicMap apikey={apikey} />
       </main>
     </div>
   );
