@@ -1,10 +1,6 @@
 import React, { useRef, useLayoutEffect } from "react";
 
 const Map = ({ apikey = null }) => {
-  if (!apikey) {
-    return null;
-  }
-
   const mapRef = useRef(null);
 
   useLayoutEffect(() => {
@@ -32,6 +28,10 @@ const Map = ({ apikey = null }) => {
       createdMap.dispose();
     };
   }, [mapRef]);
+
+  if (!apikey) {
+    return null;
+  }
 
   return <div className="map" ref={mapRef} style={{ height: "500px" }} />;
 };
